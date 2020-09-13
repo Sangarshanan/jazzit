@@ -6,6 +6,9 @@ Of course you didn't
 
 But here it is anyway
 
+```
+pip install jazzit
+```
 
 ### What it do ?
 
