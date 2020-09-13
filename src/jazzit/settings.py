@@ -2,6 +2,4 @@ import os
 
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 
-
-def settings():
-    pass
+current_dir, _ = os.path.split(__file__)
