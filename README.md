@@ -74,7 +74,7 @@ I did a lil profiling on bin/profiler.py
 
 > Without Music
 
-Time to run : 5.91 sec
+Time to run : 5.826sec
 
 ```
 Line #    Mem usage    Increment   Line Contents
@@ -87,7 +87,7 @@ Line #    Mem usage    Increment   Line Contents
 
 > With Music
 
-Time to run: 5.826 sec
+Time to run: 5.91 sec
 
 
 ```
