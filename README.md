@@ -6,6 +6,9 @@ Of course you didn't
 
 But here it is anyway
 
+
+### Install
+
 ```
 pip install jazzit
 ```
@@ -15,7 +18,7 @@ pip install jazzit
 With `Jazzit` you can just add a decorator to your functions and jazz it up 
 
 - You can have a elevator music to go along with your long running script
-- Let your script play a humiliating music when it errors out    
+- Play humiliating music when it errors out to put you in your place
 
 There are default tracks you can use, or you can use your own custom tracks
 
@@ -36,7 +39,7 @@ if __name__ == "__main__":
 
 ```
 
-Sip coffee to elevator music while your scripts is running
+Sip coffee to elevator music while your script is running
 
 ```python
 
@@ -70,43 +73,29 @@ Check out some of the [examples](https://github.com/Sangarshanan/jazzit/examples
 > :warning: **Use wisely**:  Best suited for scripts you run for non-professionally !
 
 
-### Sum profiling
+### Dependencies
+
+Jazz added with [playsound](https://github.com/TaylorSMarks/playsound)
+
+If you are ubuntu and getting hit with `ModuleNotFoundError: No module named 'gi`
+
+You might need to install Pygobject https://pygobject.readthedocs.io/en/latest/getting_started.html
+
+
+### Profiling
 
 
 I did a lil profiling on bin/profiler.py
 
 > Without Music
 
-Time to run : 5.826sec
-
-```
-Line #    Mem usage    Increment   Line Contents
-================================================
-    27   25.277 MiB   25.277 MiB   @profile
-    28                             def run_no_music(limit):
-    29   25.277 MiB    0.000 MiB       for num in range(1, limit):
-    30   25.277 MiB    0.000 MiB           print(fibonacci(num), num)
-```
+Time to run : 5.2486350536346436 secs
 
 > With Music
 
-Time to run: 5.91 sec
+Time to run: 5.270173072814941 secs
 
-
-```
-Line #    Mem usage    Increment   Line Contents
-================================================
-    28   25.070 MiB   25.070 MiB           def wrapped_function(*args):
-    29   25.070 MiB    0.000 MiB               track_path = get_track_path(self.track)
-    30   25.070 MiB    0.000 MiB               pygame.mixer.music.load(track_path)
-    31   25.070 MiB    0.000 MiB               try:
-    32   25.070 MiB    0.000 MiB                   pygame.mixer.music.play(loops=-1)
-    33   25.070 MiB    0.000 MiB                   original_func(*args)
-    34                                         except KeyboardInterrupt:
-    35                                             pygame.mixer.music.stop()
-    36                                         finally:
-    37   25.070 MiB    0.000 MiB                   pygame.mixer.music.stop()
-```
+Memory profiling `python -m memory_profiler bin/profiler.py`
 
 
 ### Disclaimer

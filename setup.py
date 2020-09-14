@@ -4,7 +4,7 @@ import setuptools
 project_dir = Path(__file__).parent
 
 requires = [
-    "pygame>=1.9.6",
+    "playsound==1.2.2",
     "mutagen>=1.45.1",
     "pyfiglet>=0.8.post1"
 ]
@@ -12,8 +12,8 @@ requires = [
 def setup_package():
     metadata = dict(
         name="jazzit",
-        version="0.1.0",
-        description="Add unwanted jazz to scripts",
+        version="0.2.0",
+        description="Add unwanted jazz to your scripts",
         long_description=project_dir.joinpath("README.md").read_text(encoding="utf-8"),
         long_description_content_type='text/markdown',
         license="Apache 2.0",

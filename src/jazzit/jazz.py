@@ -3,11 +3,11 @@ from .settings import current_dir
 import os
 import sys
 import time
-import random
+import signal
 import traceback
+import subprocess
 
-import pygame
-pygame.mixer.init()
+from playsound import playsound
 
 
 def get_track_path(track):
@@ -18,23 +18,29 @@ def get_track_path(track):
         return track
 
 
+def kill_process(process):
+    os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+
+
 class WaitingTrack(object):
     """Use on loooong scripts."""
 
     def __init__(self, track=None):
-        self.track = "elevator.mp3"
+        self.track = track
 
     def __call__(self, original_func):
         def wrapped_function(*args):
             track_path = get_track_path(self.track)
-            pygame.mixer.music.load(track_path)
+            cmd = f"python {current_dir}/play.py {track_path}"
+            process = subprocess.Popen(
+                cmd, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid
+            )
             try:
-                pygame.mixer.music.play(loops=-1)
                 original_func(*args)
             except KeyboardInterrupt:
-                pygame.mixer.music.stop()
+                kill_process(process)
             finally:
-                pygame.mixer.music.stop()
+                kill_process(process)
 
         return wrapped_function
 
@@ -55,21 +61,22 @@ class ErrorTrack(object):
                 original_func(*args)
             except Exception as e:
                 track_path = get_track_path(self.track)
-                pygame.mixer.music.load(track_path)
                 if self.ascii_err:
                     from pyfiglet import figlet_format
 
                     sys.stdout.write(figlet_format(e.__class__.__name__))
                 traceback.print_exc()
-                pygame.mixer.music.play()
+                cmd = f"python {current_dir}/play.py {track_path}"
+                process = subprocess.Popen(
+                    cmd, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid
+                )
                 if self.wait is None:
                     from .utils import track_length
 
                     time.sleep(track_length(track_path))
                 else:
                     time.sleep(self.wait)
-                pygame.mixer.music.stop()
             finally:
-                pass
+                kill_process(process)
 
         return wrapped_function
