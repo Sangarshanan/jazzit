@@ -67,7 +67,7 @@ if __name__ == "__main__":
 The in-build tracks are bruh_moment, elevator and curb_your_enthusiasm but you can add your custom tracks 
 
 
-Check out some of the [examples](https://github.com/Sangarshanan/jazzit/examples)
+Check out some of the [examples](https://github.com/Sangarshanan/jazzit/tree/master/examples)
 
 
 > :warning: **Use wisely**:  Best suited for scripts you run for non-professionally !
