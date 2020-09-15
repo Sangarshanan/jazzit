@@ -100,8 +100,4 @@ Memory profiling `python -m memory_profiler bin/profiler.py`
 
 ### Disclaimer
 
-Default tracks were pulled from https://www.youtube.com/user/gamingsoundfx/
-
-No Copyright Infringement Intended
-
-I might take down these tracks or add more depending on the number of lawsuits I get slapped with
+Default tracks were pulled from royalty-free stock audio sites (They are mostly gaming and meme sound effects)
