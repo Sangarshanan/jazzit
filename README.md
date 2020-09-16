@@ -1,6 +1,6 @@
 # JazzIt 🎷
 
-Ever wanted your scripts to play music while running/ on erroring out ?
+Ever wanted your scripts to play music while running/ on erroring out?
 
 Of course you didn't
 
@@ -13,7 +13,7 @@ But here it is anyway
 pip install jazzit
 ```
 
-### What it do ?
+### What it do?
 
 With `Jazzit` you can just add a decorator to your functions and jazz it up 
 
@@ -22,7 +22,7 @@ With `Jazzit` you can just add a decorator to your functions and jazz it up
 
 There are default tracks you can use, or you can use your own custom tracks
 
-### How to do it ?
+### How to do it?
 
 Play Frolic from curb your enthusiasm to keep you in your place
 
@@ -47,7 +47,7 @@ from jazzit import waiting_track
 
 def fibonacci(n):
     if n < 0:
-        raise Exception("BE POSITIVE !!!")
+        raise Exception("BE POSITIVE!!!")
     elif n == 1:
         return 0
     elif n == 2:
@@ -70,7 +70,7 @@ The in-build tracks are bruh_moment, elevator and curb_your_enthusiasm but you c
 Check out some of the [examples](https://github.com/Sangarshanan/jazzit/tree/master/examples)
 
 
-> :warning: **Use wisely**:  Best suited for scripts you run for non-professionally !
+> :warning: **Use wisely**:  Best suited for scripts you run for non-professionally!
 
 
 ### Dependencies
