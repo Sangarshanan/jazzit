@@ -70,7 +70,7 @@ The in-build tracks are bruh_moment, elevator and curb_your_enthusiasm but you c
 Check out some of the [examples](https://github.com/Sangarshanan/jazzit/tree/master/examples)
 
 
-> :warning: **Use wisely**:  Best suited for scripts you run for non-professionally!
+> :warning: **Use wisely**:  Best suited for scripts you run non-professionally!
 
 
 ### Dependencies
