@@ -19,4 +19,4 @@ def run(limit):
 
 
 if __name__ == "__main__":
-    run(35)
+    run(1000)

@@ -1,46 +1,36 @@
-from .settings import current_dir
+"""Duke Silver."""
 
-import os
 import sys
 import time
-import signal
 import traceback
-import subprocess
 
-from playsound import playsound
-
-
-def get_track_path(track):
-    track_path = os.path.join(current_dir, "tracks", track)
-    if os.path.exists(track_path):
-        return track_path
-    else:
-        return track
-
-
-def kill_process(process):
-    os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+from .utils import (
+    _get_track_path,
+    _play_music,
+    _start_music,
+    _stop_music,
+)
 
 
 class WaitingTrack(object):
     """Use on loooong scripts."""
 
     def __init__(self, track=None):
+        """Constructor."""
         self.track = track
 
     def __call__(self, original_func):
+        """Wrap decorator."""
+
         def wrapped_function(*args):
-            track_path = get_track_path(self.track)
-            cmd = f"python {current_dir}/play.py {track_path}"
-            process = subprocess.Popen(
-                cmd, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid
-            )
+            track_path = _get_track_path(self.track)
+            process = _start_music(track_path)
             try:
                 original_func(*args)
             except KeyboardInterrupt:
-                kill_process(process)
+                _stop_music(process)
             finally:
-                kill_process(process)
+                _stop_music(process)
 
         return wrapped_function
 
@@ -49,34 +39,35 @@ class ErrorTrack(object):
     """Use on potential oopsies."""
 
     def __init__(self, track=None, wait=None, ascii_err=False):
+        """Constructor."""
         self.track = track
-        # Time (optional) will be infered by track length
-        self.wait = wait
-        # ascii_err (Optional) Print the exception as an ascii art
-        self.ascii_err = ascii_err
+        self.wait = wait  # (optional) will be infered by track length
+        self.ascii_err = ascii_err  # (Optional) Print the exception as an asciiart
 
     def __call__(self, original_func):
+        """Wrap decorator."""
+
         def wrapped_function(*args):
             try:
                 original_func(*args)
             except Exception as e:
-                track_path = get_track_path(self.track)
+                track_path = _get_track_path(self.track)
                 if self.ascii_err:
                     from pyfiglet import figlet_format
 
                     sys.stdout.write(figlet_format(e.__class__.__name__))
                 traceback.print_exc()
-                cmd = f"python {current_dir}/play.py {track_path}"
-                process = subprocess.Popen(
-                    cmd, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid
-                )
-                if self.wait is None:
-                    from .utils import track_length
+                try:
+                    process = _start_music(track_path)
+                    if self.wait is None:
+                        from .utils import _track_length
 
-                    time.sleep(track_length(track_path))
-                else:
-                    time.sleep(self.wait)
+                        time.sleep(_track_length(track_path))
+                    else:
+                        time.sleep(self.wait)
+                except KeyboardInterrupt:
+                    _stop_music(process)
             finally:
-                kill_process(process)
+                _stop_music(process)
 
         return wrapped_function
