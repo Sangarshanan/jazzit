@@ -57,13 +57,16 @@ class ErrorTrack(object):
 
                     sys.stdout.write(figlet_format(e.__class__.__name__))
                 traceback.print_exc()
-                process = _start_music(track_path)
-                if self.wait is None:
-                    from .utils import _track_length
+                try:
+                    process = _start_music(track_path)
+                    if self.wait is None:
+                        from .utils import _track_length
 
-                    time.sleep(_track_length(track_path))
-                else:
-                    time.sleep(self.wait)
+                        time.sleep(_track_length(track_path))
+                    else:
+                        time.sleep(self.wait)
+                except KeyboardInterrupt:
+                    _stop_music(process)
             finally:
                 _stop_music(process)
 
