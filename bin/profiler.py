@@ -1,4 +1,3 @@
-
 try:
     import memory_profiler
 except ImportError:
@@ -6,6 +5,7 @@ except ImportError:
 
 from time import time
 from jazzit import waiting_track
+
 
 def fibonacci(n):
     if n < 0:
@@ -16,6 +16,7 @@ def fibonacci(n):
         return 1
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
+
 
 @profile
 @waiting_track("elevator.mp3")
@@ -34,9 +35,8 @@ if __name__ == "__main__":
     start = time()
     run_no_music(30)
     end = time()
-    print("Without Music", end-start)
+    print("Without Music", end - start)
     start = time()
     run_music(30)
     end = time()
-    print("With Music", end-start)
-
+    print("With Music", end - start)

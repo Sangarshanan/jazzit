@@ -8,5 +8,6 @@ if _in_notebook:
     def load_ipython_extension(ipython):
         ipython.register_magics(JupyterJazz)
 
+
 from .jazz import WaitingTrack as waiting_track  # noqa
 from .jazz import ErrorTrack as error_track  # noqa
