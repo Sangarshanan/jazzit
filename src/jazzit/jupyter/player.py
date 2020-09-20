@@ -21,7 +21,6 @@ class JupyterPlayer:
         display(HTML(""), display_id=self.display_id)
 
     def play_music(self):
-        display_id = self.display_id
         sound = JupyterAudio(self.track, autoplay=True,)
         return display(sound, display_id=self.display_id)
 
