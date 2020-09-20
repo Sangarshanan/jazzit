@@ -1,7 +1,5 @@
 import uuid
-import time
 from IPython.display import display, Audio, HTML
-from IPython.core.magic import register_cell_magic
 
 from ..utils import _get_track_path
 
@@ -23,11 +21,7 @@ class JupyterPlayer:
         display(HTML(""), display_id=self.display_id)
 
     def play_music(self):
-        display_id = self.display_id
-        sound = JupyterAudio(
-            self.track,
-            autoplay=True,
-        )
+        sound = JupyterAudio(self.track, autoplay=True,)
         return display(sound, display_id=self.display_id)
 
 

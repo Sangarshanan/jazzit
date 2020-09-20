@@ -37,7 +37,7 @@ def _in_notebook():
 
             if "IPKernelApp" not in get_ipython().config:  # pragma: no cover
                 in_notebook = False
-        except:
+        except Exception:
             in_notebook = False
         _flags["in_notebook"] = in_notebook
     return in_notebook

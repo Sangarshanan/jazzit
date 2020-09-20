@@ -6,7 +6,6 @@ import traceback
 
 from .utils import (
     _get_track_path,
-    _play_music,
     _start_music,
     _stop_music,
 )

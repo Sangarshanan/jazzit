@@ -8,9 +8,7 @@ from .player import _start_music, _stop_music
 @magics_class
 class JupyterJazz(Magics):
     @magic_arguments()
-    @argument(
-        "-t", "--track", help="Track to Play"
-    )
+    @argument("-t", "--track", help="Track to Play")
     @line_cell_magic
     def waiting_track(self, line, cell=None):
         args = parse_argstring(self.waiting_track, line)

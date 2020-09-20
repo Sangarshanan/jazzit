@@ -3,11 +3,8 @@ import setuptools
 
 project_dir = Path(__file__).parent
 
-requires = [
-    "playsound==1.2.2",
-    "mutagen>=1.45.1",
-    "pyfiglet>=0.8.post1"
-]
+requires = ["playsound==1.2.2", "mutagen>=1.45.1", "pyfiglet>=0.8.post1"]
+
 
 def setup_package():
     metadata = dict(
@@ -15,12 +12,12 @@ def setup_package():
         version="0.2.0",
         description="Add unwanted jazz to your scripts",
         long_description=project_dir.joinpath("README.md").read_text(encoding="utf-8"),
-        long_description_content_type='text/markdown',
+        long_description_content_type="text/markdown",
         license="Apache 2.0",
         classifiers=[
             "Environment :: Console",
             "Programming Language :: Python",
-            'Intended Audience :: Developers',
+            "Intended Audience :: Developers",
         ],
         url="https://github.com/sangarshanan/jazzit",
         author="sangarshanan",
