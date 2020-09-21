@@ -9,7 +9,7 @@ requires = ["playsound==1.2.2", "mutagen>=1.45.1", "pyfiglet>=0.8.post1"]
 def setup_package():
     metadata = dict(
         name="jazzit",
-        version="0.2.0",
+        version="0.3.0",
         description="Add unwanted jazz to your scripts",
         long_description=project_dir.joinpath("README.md").read_text(encoding="utf-8"),
         long_description_content_type="text/markdown",
