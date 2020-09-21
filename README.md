@@ -170,7 +170,16 @@ Time to run: 5.270173072814941 secs
 
 Memory profiling `python -m memory_profiler bin/profiler.py`
 
+### Social 
+
+Hacker News: https://news.ycombinator.com/item?id=24485447
+
+Twitter: https://twitter.com/sangarshanan/status/1305933704007573504
+
+[amrrs](https://github.com/amrrs) put together a video https://youtu.be/qkyQfIjvPmM :)
+
 
 ### Disclaimer
 
 Default tracks were pulled from royalty-free stock audio sites (They are mostly gaming and meme sound effects)
+
