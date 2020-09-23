@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 from playsound import playsound
 
-_current_dir, _ = os.path.split(__file__)
+_current_dir = os.path.split(__file__)[0]
 _flags = {}
 
 
@@ -23,7 +23,7 @@ def _track_length(track_path):
     try:
         audio = MP3(track_path)
         length = audio.info.length
-    except Exception: # TODO: CHANGE NOT EXCEPTION
+    except Exception:  # TODO: CHANGE NOT EXCEPTION
         # Default fallback
         length = 3
     return length
@@ -40,18 +40,15 @@ def _get_track_path(track):
 
 def _in_notebook():
     """Are you in a notebook ?."""
-    try:
-        in_notebook = _flags["in_notebook"]
-    except KeyError:
-        in_notebook = True
+    if "in_notebook" not in _flags:
         try:
             from IPython import get_ipython
             in_notebook = "IPKernelApp" in get_ipython().config
-            
         except AttributeError:
             in_notebook = False
+
         _flags["in_notebook"] = in_notebook
-    return in_notebook
+    return _flags["in_notebook"]
 
 
 def _play_music(track_path):
