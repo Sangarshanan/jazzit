@@ -1,0 +1,5 @@
+pyfiglet
+playsound
+mutagen
+ipython
+memory_profiler

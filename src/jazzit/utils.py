@@ -2,9 +2,10 @@
 
 import os
 import time
-from playsound import playsound
-from urllib.parse import urlparse
 from multiprocessing import Process
+from urllib.parse import urlparse
+
+from playsound import playsound
 
 _current_dir, _ = os.path.split(__file__)
 _flags = {}
@@ -12,10 +13,7 @@ _flags = {}
 
 def _is_url(text):
     parsed = urlparse(text)
-    if (parsed.scheme) and (parsed.netloc):
-        return True
-    else:
-        return False
+    return bool(parsed.scheme and parsed.netloc)
 
 
 def _track_length(track_path):
@@ -25,7 +23,7 @@ def _track_length(track_path):
     try:
         audio = MP3(track_path)
         length = audio.info.length
-    except Exception:
+    except Exception: # TODO: CHANGE NOT EXCEPTION
         # Default fallback
         length = 3
     return length
@@ -48,10 +46,9 @@ def _in_notebook():
         in_notebook = True
         try:
             from IPython import get_ipython
-
-            if "IPKernelApp" not in get_ipython().config:  # pragma: no cover
-                in_notebook = False
-        except Exception:
+            in_notebook = "IPKernelApp" in get_ipython().config
+            
+        except AttributeError:
             in_notebook = False
         _flags["in_notebook"] = in_notebook
     return in_notebook
@@ -80,8 +77,7 @@ def _stop_music(process):
     """Stop Music."""
     if _in_notebook():
         from .jupyter.player import _stop_music
-
-        _stop_music(process)
-    else:
-        process.terminate()
-        process.join()
+        return _stop_music(process)
+    
+    process.terminate()
+    process.join()

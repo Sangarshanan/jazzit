@@ -45,7 +45,7 @@ class ErrorTrack(object):
         def wrapped_function(*args):
             try:
                 original_func(*args)
-            except Exception as e:
+            except Exception as e:  # TODO: CHANGE NOT EXCEPTION
                 track_path = _get_track_path(self.track)
                 if self.ascii_err:
                     from pyfiglet import figlet_format
