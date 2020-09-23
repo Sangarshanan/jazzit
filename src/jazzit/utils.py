@@ -78,6 +78,6 @@ def _stop_music(process):
     if _in_notebook():
         from .jupyter.player import _stop_music
         return _stop_music(process)
-    
+
     process.terminate()
     process.join()
