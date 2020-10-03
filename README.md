@@ -2,6 +2,7 @@
 
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Sangarshanan/jazzit/blob/master/notebook.ipynb)
 [![License](https://img.shields.io/pypi/l/jazzit.svg)](https://github.com/Sangarshanan/jazzit/blob/master/LICENSE)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light.svg)](https://deepsource.io/gh/sangarshanan/jazzit/?ref=repository-badge)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sangarshanan1998@gmail.com)
 
 Ever wanted your scripts to play music while running/ on erroring out?
