@@ -4,18 +4,18 @@ except ImportError:
     raise ImportError("Module memory_profiler not found !!")
 
 from time import time
+
 from jazzit import waiting_track
 
 
 def fibonacci(n):
     if n < 0:
-        raise Exception("BE POSITIVE !!!")
+        raise ValueError("BE POSITIVE !!!")
     elif n == 1:
         return 0
     elif n == 2:
         return 1
-    else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
+    return fibonacci(n - 1) + fibonacci(n - 2)
 
 
 @profile
@@ -36,6 +36,7 @@ if __name__ == "__main__":
     run_no_music(30)
     end = time()
     print("Without Music", end - start)
+
     start = time()
     run_music(30)
     end = time()

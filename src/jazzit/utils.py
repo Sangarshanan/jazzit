@@ -2,20 +2,18 @@
 
 import os
 import time
-from playsound import playsound
-from urllib.parse import urlparse
 from multiprocessing import Process
+from urllib.parse import urlparse
 
-_current_dir, _ = os.path.split(__file__)
+from playsound import playsound
+
+_current_dir = os.path.split(__file__)[0]
 _flags = {}
 
 
 def _is_url(text):
     parsed = urlparse(text)
-    if (parsed.scheme) and (parsed.netloc):
-        return True
-    else:
-        return False
+    return bool(parsed.scheme and parsed.netloc)
 
 
 def _track_length(track_path):
@@ -25,7 +23,7 @@ def _track_length(track_path):
     try:
         audio = MP3(track_path)
         length = audio.info.length
-    except Exception:
+    except Exception:  # TODO: CHANGE NOT EXCEPTION
         # Default fallback
         length = 3
     return length
@@ -42,19 +40,15 @@ def _get_track_path(track):
 
 def _in_notebook():
     """Are you in a notebook ?."""
-    try:
-        in_notebook = _flags["in_notebook"]
-    except KeyError:
-        in_notebook = True
+    if "in_notebook" not in _flags:
         try:
             from IPython import get_ipython
-
-            if "IPKernelApp" not in get_ipython().config:  # pragma: no cover
-                in_notebook = False
-        except Exception:
+            in_notebook = "IPKernelApp" in get_ipython().config
+        except AttributeError:
             in_notebook = False
+
         _flags["in_notebook"] = in_notebook
-    return in_notebook
+    return _flags["in_notebook"]
 
 
 def _play_music(track_path):
@@ -80,8 +74,7 @@ def _stop_music(process):
     """Stop Music."""
     if _in_notebook():
         from .jupyter.player import _stop_music
+        return _stop_music(process)
 
-        _stop_music(process)
-    else:
-        process.terminate()
-        process.join()
+    process.terminate()
+    process.join()
